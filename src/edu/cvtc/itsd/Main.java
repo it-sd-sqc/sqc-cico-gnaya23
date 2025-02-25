@@ -27,6 +27,8 @@ public class Main {
   private static final int ERROR_NOT_FOUND = 2;
   private static final int ERROR_UPDATE_FAILED = 3;
   private static final int ERROR_INSERT_FAILED = 4;
+  private static final int ERROR_NON_NUMERICAL_FOUND = 5;
+
 
   // Timeouts. Note the units.
   private static final long TIMEOUT_PANEL_MS = 10 * 1000;
@@ -36,12 +38,14 @@ public class Main {
   // InputFilter manages user input to the card number field.
   private static class InputFilter extends DocumentFilter {
     private static final int MAX_LENGTH = 8;
+    private static final String VALID_INPUT = "[0-9]";
+
 
     @Override
     public void insertString(FilterBypass fb, int offset, String stringToAdd, AttributeSet attr)
         throws BadLocationException
     {
-      if (fb.getDocument() != null) {
+      if (fb.getDocument() != null && stringToAdd.matches(VALID_INPUT)) {
         super.insertString(fb, offset, stringToAdd, attr);
       }
       else {
@@ -155,6 +159,7 @@ public class Main {
       else {
         showError(ERROR_NOT_FOUND);
       }
+
     }
     catch (SQLException e) {
       System.err.println(e.getMessage());
@@ -179,7 +184,8 @@ public class Main {
         "Please inform staff that database wasn't found.",
         "Please show your card to staff to validate.",
         "Please inform staff that status updates failed.",
-        "Please inform staff that log updates failed."
+        "Please inform staff that log updates failed.",
+        "Non-numerical characters were found. Please try again."
     };
 
     labelReason.setText(explanations[code]);
@@ -259,6 +265,8 @@ public class Main {
     fieldNumber.setBackground(Color.green);
     fieldNumber.setForeground(Color.magenta);
     panelMain.add(fieldNumber);
+
+
 
     JButton updateButton = new JButton("Update");
     updateButton.setAlignmentX(JComponent.CENTER_ALIGNMENT);
