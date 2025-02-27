@@ -27,7 +27,7 @@ public class Main {
   private static final int ERROR_NOT_FOUND = 2;
   private static final int ERROR_UPDATE_FAILED = 3;
   private static final int ERROR_INSERT_FAILED = 4;
-  private static final int ERROR_NON_NUMERICAL_FOUND = 5;
+
 
 
   // Timeouts. Note the units.
