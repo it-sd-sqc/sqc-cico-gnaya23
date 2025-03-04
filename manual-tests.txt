@@ -1,6 +1,6 @@
 Use `./build.sh` to build CiCo and `./run.sh` to run it if using the command line. You can otherwise use your IDE to build and run CiCo.
 
-## Test for Non-Numerical Input
+## Test for Non-Numerical Input (Module 4)
 
 ## Test steps
 1. Build and run CiCo.
@@ -8,5 +8,17 @@ Use `./build.sh` to build CiCo and `./run.sh` to run it if using the command lin
 
 ## Expected results
 * Should not be able to enter any characters besides numbers. A sound should occur if any characters are entered.  
+
+-----------------------------------------------------------------
+
+## Test for exit button (Module 5)
+
+## Test Steps
+1. Build and run CiCo.
+2. Enter 00000000.
+3. Press the exit button. 
+
+## Expected Results
+The exit button should automatically let the user return to the "Scan Card" screen.
 
 
