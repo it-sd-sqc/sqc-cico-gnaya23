@@ -40,7 +40,6 @@ public class Main {
     private static final int MAX_LENGTH = 8;
     private static final String VALID_INPUT = "[0-9]";
 
-
     @Override
     public void insertString(FilterBypass fb, int offset, String stringToAdd, AttributeSet attr)
         throws BadLocationException
@@ -51,6 +50,7 @@ public class Main {
       else {
         Toolkit.getDefaultToolkit().beep();
       }
+
     }
 
     @Override
@@ -76,7 +76,9 @@ public class Main {
   // Revert to the main panel after a button press ////////////////////////////
   public static class Handler implements ActionListener {
     public void actionPerformed(ActionEvent evt) {
+      ((AbstractDocument)(fieldNumber.getDocument())).setDocumentFilter(null);
       Main.doneProcessing();
+      ((AbstractDocument)(fieldNumber.getDocument())).setDocumentFilter(new InputFilter());
     }
   }
 
@@ -110,7 +112,6 @@ public class Main {
   static JLabel labelUser;
   static JLabel labelState;
   static JButton buttonAcknowledge;
-  static JButton button;
 
   // Timer variables //////////////////////////////////////////////////////////
   static java.util.Timer timer;
@@ -204,6 +205,7 @@ public class Main {
     if (toFocus != null) {
       toFocus.grabFocus();
     }
+
   }
 
   // Return to the main panel /////////////////////////////////////////////////
@@ -267,15 +269,11 @@ public class Main {
     fieldNumber.setForeground(Color.magenta);
     panelMain.add(fieldNumber);
 
-
-
     JButton updateButton = new JButton("Update");
     updateButton.setAlignmentX(JComponent.CENTER_ALIGNMENT);
     updateButton.addActionListener(new Update());
     updateButton.setForeground(Color.green);
     panelMain.add(updateButton);
-
-
 
     panelMain.add(Box.createVerticalGlue());
 
@@ -300,14 +298,13 @@ public class Main {
     labelState.setForeground(Color.magenta);
     panelStatus.add(labelState);
 
-    button = new JButton("Exit");
-    button.addActionListener(handler);
+    JButton button = new JButton("Exit");
+    button.addActionListener(new Handler());
     button.setAlignmentX(JComponent.CENTER_ALIGNMENT);
     button.setForeground(Color.blue);
     panelStatus.add(button);
 
     panelStatus.add(Box.createVerticalGlue());
-
 
     // Error panel ////////////////////////////////////////////////////////////
     JPanel panelError = new JPanel();
