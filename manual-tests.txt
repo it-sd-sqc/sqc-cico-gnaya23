@@ -1,15 +1,5 @@
 Use `./build.sh` to build CiCo and `./run.sh` to run it if using the command line. You can otherwise use your IDE to build and run CiCo.
 
-## Test for Non-Numerical Input
-
-## Test steps
-1. Build and run CiCo.
-2. Enter abcd and click Update.
-
-## Expected results
-* Should display "Please show your card to staff to validate."
-
-
 # Module 6: Test Program Color Scheme
 
 ## Test steps
@@ -20,5 +10,13 @@ Use `./build.sh` to build CiCo and `./run.sh` to run it if using the command lin
 
 ## Expected results
 * The program should have a new color scheme that's easier on the eyes.
+
+## Test for exit button (Module 5)
+
+2. Enter 00000000.
+3. Press the exit button. 
+
+## Expected Results
+The exit button should automatically let the user return to the "Scan Card" screen. Also, the user's card number should be cleared from the textbox.
 
 
